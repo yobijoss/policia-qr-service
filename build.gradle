@@ -1,21 +1,47 @@
+buildscript {
+    dependencies {
+        classpath "org.openapitools:openapi-generator-gradle-plugin:3.3.4"
+    }
+
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+}
+
 plugins {
     id 'org.springframework.boot' version '2.1.4.RELEASE'
     id 'java'
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.openapi.generator'
 
 group = 'com.yobijoss'
 version = '0.1.0-SNAPSHOT'
 sourceCompatibility = '1.8'
+
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-cassandra'
+    //implementation 'org.springframework.boot:spring-boot-starter-data-cassandra'
     implementation 'org.springframework.boot:spring-boot-starter-hateoas'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'io.springfox:springfox-swagger2:2.8.0'
+    implementation 'io.springfox:springfox-swagger-ui:2.8.0'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+openApiGenerate {
+    generatorName = "spring"
+    inputSpec = "$rootDir/swagger.yaml".toString()
+    outputDir = "$rootDir".toString()
+    apiPackage = "com.yobijoss.policiaqrservice.api"
+    invokerPackage = "com.yobijoss.policiaqrservice.invoker"
+    modelPackage = "com.yobijoss.policiaqrservice.model"
 }
