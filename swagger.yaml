@@ -1,0 +1,77 @@
+swagger: '2.0'
+info:
+  description: 
+    Policia QR server, done with 
+    [http://swagger.io](http://swagger.io).
+  version: "1.0.0"
+  title: Policía QR 
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: José Ángel García Salinas
+    email: jagspage2012@gmail.com
+    url: https://github.com/yobijoss
+  license:
+    name: MIT License
+    url: https://opensource.org/licenses/MIT
+host: localhost
+basePath: /api/v1
+schemes:
+ - http
+tags:
+- name: policia
+  description: api para administrar policias
+paths:
+  /officer:
+    post:
+      summary: Post a new officer
+      description: Post a new officer
+      operationId: postOfficer
+      parameters: 
+        - name: officer
+          in: body
+          description: Officer to add to the system
+          required : true
+          schema:
+            $ref: '#/definitions/Officer'
+      responses:
+        200:
+          description: OK
+  /officer/{officerId}:
+    get:
+      summary: Find an officer by it´s ID
+      description: Returns an officer
+      operationId: getOfficerById
+      produces: 
+      - application/json
+      parameters:
+      - name: officerId
+        in: path
+        description: ID of officer to return
+        required: true
+        type: integer
+        format: int32
+      responses:
+        200:
+          description: successful search
+          schema:
+            $ref: '#/definitions/Officer'
+        400:
+          description: Invalid ID supplied
+        404:
+          description: Officer not found
+definitions:
+  Officer: 
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      fathers_last_name:
+        type: string
+      mothers_last_name:
+        type: string
+      age:
+        type: integer
+      height:
+        type: number
