@@ -3,4 +3,4 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-rootProject.name = 'policia-qr-service'
+rootProject.name = 'swagger-2-oa2-2-example'
