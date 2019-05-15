@@ -42,6 +42,6 @@ openApiGenerate {
     inputSpec = "$rootDir/swagger.yaml".toString()
     outputDir = "$rootDir".toString()
     apiPackage = "com.yobijoss.policiaqrservice.api"
-    invokerPackage = "com.yobijoss.policiaqrservice.invoker"
+    invokerPackage = "com.yobijoss.policiaqrservice"
     modelPackage = "com.yobijoss.policiaqrservice.model"
 }
