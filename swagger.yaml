@@ -39,9 +39,11 @@ paths:
             $ref: '#/definitions/Officer'
       responses:
         200:
-          description: OK
+          description: Officer Added Successfully
           schema:
             $ref: '#/responses/OfficerAdded'
+        404:
+          description: Non Authorized
   /officer/{officerId}:
     get:
       summary: Find an officer by it´s ID
