@@ -17,19 +17,23 @@ host: localhost
 basePath: /api/v1
 consumes: 
   - application/json
+  - application/xml
 produces: 
   - application/json
 schemes:
   - http
+  - https
 tags:
   - name: policia
     description: api para administrar policias
 paths:
   /officer:
-    post:
-      summary: Post a new officer
+    put:
+      summary: Put a new officer
       description: Post a new officer
       operationId: postOfficer
+      consumes: 
+        - application/json
       parameters:
         - name: officer
           in: body
@@ -43,7 +47,10 @@ paths:
           schema:
             $ref: '#/responses/OfficerAdded'
         404:
-          description: Non Authorized
+          description: Not found
+        400:
+          description: No Authorized  
+        
   /officer/{officerId}:
     get:
       summary: Find an officer by it´s ID
